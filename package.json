@@ -1,0 +1,32 @@
+{
+    "icon": "images/logo_old.png",
+    "publisher": "KarmaDev",
+    "name": "karma-lang",
+    "displayName": "Karma Lang",
+    "description": "Syntax highlighting for KarmaFile lang",
+    "version": "1.0.0",
+    "engines": {
+        "vscode": "^1.65.0"
+    },
+    "categories": [
+        "Other",
+        "Language Packs"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "karmafile",
+            "aliases": ["KarmaFile", "karmafile"],
+            "extensions": [".kf",".karmafile",".kfile",".kdfile"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "karmafile",
+            "scopeName": "source.kf",
+            "path": "./syntaxes/karmafile.tmLanguage.json"
+        }]
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/KarmaConfigs/KarmaLang.git"
+    }
+}

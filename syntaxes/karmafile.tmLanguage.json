@@ -1,0 +1,314 @@
+{
+	"information_for_contributors": [
+		"This extension was made originally for my API ( KarmaAPI ) which has a file manager with its own extension type and",
+		"its own format."
+	],
+	"version": "1.0.0",
+	"name": "KarmaFile",
+	"scopeName": "source.kf",
+	"patterns": [
+		{
+			"include": "#value"
+		}
+	],
+	"repository": {
+		"array": {
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.begin.kf"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.end.kf"
+				}
+			},
+			"name": "meta.structure.dictionary.kf",
+			"patterns": [
+				{
+					"comment": "the KarmaFile object key",
+					"include": "#objectkey"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"begin": "->",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.kf"
+						}
+					},
+					"end": "(\n)|(?=\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.kf"
+						}
+					},
+					"name": "meta.structure.dictionary.value.kf",
+					"patterns": [
+						{
+							"comment": "the KarmaFile object value",
+							"include": "#value"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.kf"
+						}
+					]
+				},
+				{
+					"begin": "<->",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.kf"
+						}
+					},
+					"end": "(\n)|(?=\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.kf"
+						}
+					},
+					"name": "meta.structure.dictionary.value.kf",
+					"patterns": [
+						{
+							"comment": "the KarmaFile object value",
+							"include": "#value"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.kf"
+						}
+					]
+				},
+				{
+					"match": "[^\\}]",
+					"name": "invalid.illegal.expected-dictionary-separator.kf"
+				}
+			]
+		},
+		"comments": {
+			"patterns": [
+				{
+					"begin": "\\*/",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.kf"
+						}
+					},
+					"end": "\\n",
+					"name": "comment.block.documentation.kf"
+				},
+				{
+					"begin": "\\*\\(",
+					"captures": {
+						"0": {
+							"name": "punctuation.definition.comment.kf"
+						}
+					},
+					"end": "\\)\\*",
+					"name": "comment.block.kf"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "punctuation.definition.comment.kf"
+						}
+					},
+					"match": "(\\*/).*$\\n?",
+					"name": "comment.line.double-slash.js"
+				}
+			]
+		},
+		"constant": {
+			"match": "\\b(?:true|false|null)\\b",
+			"name": "constant.language.kf"
+		},
+		"number": {
+			"match": "(?x)        # turn on extended mode\n  -?        # an optional minus\n  (?:\n    0       # a zero\n    |       # ...or...\n    [1-9]   # a 1-9 character\n    \\d*     # followed by zero or more digits\n  )\n  (?:\n    (?:\n      \\.    # a period\n      \\d+   # followed by one or more digits\n    )?\n    (?:\n      [eE]  # an e character\n      [+-]? # followed by an option +/-\n      \\d+   # followed by one or more digits\n    )?      # make exponent optional\n  )?        # make decimal portion optional",
+			"name": "constant.numeric.kf"
+		},
+		"object": {
+			"begin": "\\(\"\\w*\"|\\(",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.begin.kf"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.end.kf"
+				}
+			},
+			"name": "meta.structure.dictionary.kf",
+			"patterns": [
+				{
+					"comment": "the KarmaFile object key",
+					"include": "#objectkey"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"begin": "->",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.kf"
+						}
+					},
+					"end": "(\n)|(?=\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.kf"
+						}
+					},
+					"name": "meta.structure.dictionary.value.kf",
+					"patterns": [
+						{
+							"comment": "the KarmaFile object value",
+							"include": "#value"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.kf"
+						}
+					]
+				},
+				{
+					"begin": "<->",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.separator.dictionary.key-value.kf"
+						}
+					},
+					"end": "(\n)|(?=\\))",
+					"endCaptures": {
+						"1": {
+							"name": "punctuation.separator.dictionary.pair.kf"
+						}
+					},
+					"name": "meta.structure.dictionary.value.kf",
+					"patterns": [
+						{
+							"comment": "the KarmaFile object value",
+							"include": "#value"
+						},
+						{
+							"match": "[^\\s,]",
+							"name": "invalid.illegal.expected-dictionary-separator.kf"
+						}
+					]
+				},
+				{
+					"match": "[^\\s\\}\\(\\)\\(\"\\w*\"]",
+					"name": "invalid.illegal.expected-dictionary-separator.kf"
+				}
+			]
+		},
+		"string": {
+			"patterns": [
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.kf"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.kf"
+						}
+					},
+					"name": "string.quoted.double.kf",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
+				},
+				{
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.kf"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.kf"
+						}
+					},
+					"name": "string.quoted.double.kf",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
+				}
+			]
+		},
+		"objectkey": {
+			"begin": "'",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.support.type.property-name.begin.kf"
+				}
+			},
+			"end": "'",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.support.type.property-name.end.kf"
+				}
+			},
+			"name": "string.kf support.type.property-name.kf",
+			"patterns": [
+				{
+					"include": "#stringcontent"
+				}
+			]
+		},
+		"stringcontent": {
+			"patterns": [
+				{
+					"match": "(?x)                # turn on extended mode\n  \\\\                # a literal backslash\n  (?:               # ...followed by...\n    [\"\\\\/bfnrt]     # one of these characters\n    |               # ...or...\n    u               # a u\n    [0-9a-fA-F]{4}) # and four hex digits",
+					"name": "constant.character.escape.kf"
+				},
+				{
+					"match": "\\\\.",
+					"name": "invalid.illegal.unrecognized-string-escape.kf"
+				}
+			]
+		},
+		"value": {
+			"patterns": [
+				{
+					"include": "#constant"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#string"
+				},
+				{
+					"include": "#array"
+				},
+				{
+					"include": "#object"
+				},
+				{
+					"include": "#section"
+				},
+				{
+					"include": "#comments"
+				}
+			]
+		}
+	}
+}
