@@ -3,7 +3,7 @@
 		"This extension was made originally for my API ( KarmaAPI ) which has a file manager with its own extension type and",
 		"its own format."
 	],
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "KarmaFile",
 	"scopeName": "source.kf",
 	"patterns": [
