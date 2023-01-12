@@ -125,6 +125,47 @@
 		},
 		"constant": {
 			"match": "\\b(?:true|false|null)\\b",
+			"name": "constant.language.kf",
+			"patterns": [
+				{
+					"begin": "0x",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.kf"
+						}
+					},
+					"end": ".",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.kf"
+						}
+					},
+					"name": "string.quoted.double.kf",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
+				}
+			]
+		},
+		"byte": {
+			"begin": "\\b(0x)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.dictionary.begin.kf"
+				},
+				"1": {
+					"name": "punctuation.definition.dictionary.begin.kf"
+				}
+			},
+			"end": "\\b",
+			"patterns": [
+				{
+					"match": "\\w*",
+					"name": "constant.character.escape.kf"
+				}
+			],
 			"name": "constant.language.kf"
 		},
 		"number": {
@@ -289,6 +330,9 @@
 			"patterns": [
 				{
 					"include": "#constant"
+				},
+				{
+					"include": "#byte"
 				},
 				{
 					"include": "#number"
