@@ -3,7 +3,7 @@
 		"This extension was made originally for my API ( KarmaAPI ) which has a file manager with its own extension type and",
 		"its own format."
 	],
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"name": "KarmaFile",
 	"scopeName": "source.kf",
 	"patterns": [
@@ -12,14 +12,14 @@
 		}
 	],
 	"repository": {
-		"array": {
-			"begin": "\\{",
+		"map": {
+			"begin": "\\[",
 			"beginCaptures": {
 				"0": {
 					"name": "punctuation.definition.array.begin.kf"
 				}
 			},
-			"end": "\\}",
+			"end": "\\]",
 			"endCaptures": {
 				"0": {
 					"name": "punctuation.definition.array.end.kf"
@@ -83,6 +83,39 @@
 							"name": "invalid.illegal.expected-dictionary-separator.kf"
 						}
 					]
+				},
+				{
+					"match": "[^\\]]",
+					"name": "invalid.illegal.expected-dictionary-separator.kf"
+				}
+			]
+		},
+		"array": {
+			"begin": "\\{",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.begin.kf"
+				}
+			},
+			"end": "\\}",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.array.end.kf"
+				}
+			},
+			"name": "meta.structure.dictionary.kf",
+			"patterns": [
+				{
+					"include": "#comments"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#constant"
+				},
+				{
+					"include": "#string"
 				},
 				{
 					"match": "[^\\}]",
@@ -295,22 +328,46 @@
 			]
 		},
 		"objectkey": {
-			"begin": "'",
-			"beginCaptures": {
-				"0": {
-					"name": "punctuation.support.type.property-name.begin.kf"
-				}
-			},
-			"end": "'",
-			"endCaptures": {
-				"0": {
-					"name": "punctuation.support.type.property-name.end.kf"
-				}
-			},
-			"name": "string.kf support.type.property-name.kf",
 			"patterns": [
 				{
-					"include": "#stringcontent"
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.support.type.property-name.begin.kf"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.support.type.property-name.end.kf"
+						}
+					},
+					"name": "string.kf support.type.property-name.kf",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
+				},
+				{
+					"begin": "\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.support.type.property-name.begin.kf"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.support.type.property-name.end.kf"
+						}
+					},
+					"name": "string.kf support.type.property-name.kf",
+					"patterns": [
+						{
+							"include": "#stringcontent"
+						}
+					]
 				}
 			]
 		},
@@ -339,6 +396,9 @@
 				},
 				{
 					"include": "#string"
+				},
+				{
+					"include": "#map"
 				},
 				{
 					"include": "#array"
