@@ -4,7 +4,7 @@
     "name": "karma-lang",
     "displayName": "Karma Lang",
     "description": "Syntax highlighting for KarmaFile lang",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "engines": {
         "vscode": "^1.65.0"
     },
